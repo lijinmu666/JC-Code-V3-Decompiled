@@ -1,0 +1,35 @@
+name: Build APK
+on:
+  push:
+    branches: [main]
+    paths:
+      - build.py
+      - smali-source.zip
+      - resources-native.zip
+      - .github/workflows/build.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Compile Smali and resources
+        run: python3 build.py
+      - name: Hash output
+        run: sha256sum out/*.apk
+      - uses: actions/upload-artifact@v4
+        with:
+          name: JC-Code-V3-3.2.6-unsigned
+          path: out/*.apk
+          if-no-files-found: error
+          retention-days: 7
