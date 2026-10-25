@@ -1,0 +1,33 @@
+package org.bouncycastle.p133asn1.p139cms;
+
+import org.bouncycastle.p133asn1.ASN1Encodable;
+import org.bouncycastle.p133asn1.ASN1ObjectIdentifier;
+import org.bouncycastle.p133asn1.ASN1SequenceParser;
+import org.bouncycastle.p133asn1.ASN1TaggedObjectParser;
+import org.bouncycastle.p133asn1.ASN1Util;
+import org.bouncycastle.p133asn1.p174x509.AlgorithmIdentifier;
+
+/* loaded from: classes.dex */
+public class EncryptedContentInfoParser {
+    private AlgorithmIdentifier _contentEncryptionAlgorithm;
+    private ASN1ObjectIdentifier _contentType;
+    private ASN1TaggedObjectParser _encryptedContent;
+
+    public EncryptedContentInfoParser(ASN1SequenceParser aSN1SequenceParser) {
+        this._contentType = (ASN1ObjectIdentifier) aSN1SequenceParser.readObject();
+        this._contentEncryptionAlgorithm = AlgorithmIdentifier.getInstance(aSN1SequenceParser.readObject().toASN1Primitive());
+        this._encryptedContent = (ASN1TaggedObjectParser) aSN1SequenceParser.readObject();
+    }
+
+    public AlgorithmIdentifier getContentEncryptionAlgorithm() {
+        return this._contentEncryptionAlgorithm;
+    }
+
+    public ASN1ObjectIdentifier getContentType() {
+        return this._contentType;
+    }
+
+    public ASN1Encodable getEncryptedContent(int i) {
+        return ASN1Util.parseContextBaseUniversal(this._encryptedContent, 0, false, i);
+    }
+}

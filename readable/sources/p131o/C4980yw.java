@@ -1,0 +1,54 @@
+package p131o;
+
+/* renamed from: o.yw */
+/* loaded from: classes.dex */
+public final class C4980yw extends AbstractC3595dy implements InterfaceC2404Ly {
+
+    /* renamed from: zbb */
+    private static final C4980yw f17593zbb;
+
+    /* renamed from: zbd */
+    private int f17594zbd;
+
+    /* renamed from: zbe */
+    private int f17595zbe;
+
+    /* renamed from: zbg */
+    private float f17597zbg;
+
+    /* renamed from: zbh */
+    private byte f17598zbh = 2;
+
+    /* renamed from: zbf */
+    private InterfaceC3988jy f17596zbf = AbstractC3595dy.m11749BAnRFn();
+
+    static {
+        C4980yw c4980yw = new C4980yw();
+        f17593zbb = c4980yw;
+        AbstractC3595dy.m11753YoKzxo(C4980yw.class, c4980yw);
+    }
+
+    @Override // p131o.AbstractC3595dy
+    /* renamed from: IEE */
+    public final Object mo7631IEE(int i, Object obj, Object obj2) {
+        int i2 = i - 1;
+        if (i2 == 0) {
+            return Byte.valueOf(this.f17598zbh);
+        }
+        if (i2 == 2) {
+            return AbstractC3595dy.m11750ETF(f17593zbb, "\u0001\u0003\u0000\u0001\u0001\u0003\u0003\u0000\u0001\u0002\u0001ᔄ\u0000\u0002ᔁ\u0001\u0003\u0016", new Object[]{"zbd", "zbe", "zbg", "zbf"});
+        }
+        if (i2 == 3) {
+            return new C4980yw();
+        }
+        AbstractC2129Hv abstractC2129Hv = null;
+        if (i2 == 4) {
+            return new C4916xw(abstractC2129Hv);
+        }
+        if (i2 == 5) {
+            return f17593zbb;
+        }
+        this.f17598zbh = obj == null ? (byte) 0 : (byte) 1;
+        return null;
+    }
+}

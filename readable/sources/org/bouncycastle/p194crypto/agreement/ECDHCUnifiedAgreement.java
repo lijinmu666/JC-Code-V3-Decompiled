@@ -1,0 +1,39 @@
+package org.bouncycastle.p194crypto.agreement;
+
+import java.math.BigInteger;
+import org.bouncycastle.p194crypto.CipherParameters;
+import org.bouncycastle.p194crypto.CryptoServicesRegistrar;
+import org.bouncycastle.p194crypto.p213params.ECDHUPrivateParameters;
+import org.bouncycastle.p194crypto.p213params.ECDHUPublicParameters;
+import org.bouncycastle.p361util.BigIntegers;
+
+/* loaded from: classes2.dex */
+public class ECDHCUnifiedAgreement {
+    private ECDHUPrivateParameters privParams;
+
+    public byte[] calculateAgreement(CipherParameters cipherParameters) {
+        ECDHUPublicParameters eCDHUPublicParameters = (ECDHUPublicParameters) cipherParameters;
+        ECDHCBasicAgreement eCDHCBasicAgreement = new ECDHCBasicAgreement();
+        ECDHCBasicAgreement eCDHCBasicAgreement2 = new ECDHCBasicAgreement();
+        eCDHCBasicAgreement.mo14945init(this.privParams.getStaticPrivateKey());
+        BigInteger bigIntegerCalculateAgreement = eCDHCBasicAgreement.calculateAgreement(eCDHUPublicParameters.getStaticPublicKey());
+        eCDHCBasicAgreement2.mo14945init(this.privParams.getEphemeralPrivateKey());
+        BigInteger bigIntegerCalculateAgreement2 = eCDHCBasicAgreement2.calculateAgreement(eCDHUPublicParameters.getEphemeralPublicKey());
+        int fieldSize = getFieldSize();
+        byte[] bArr = new byte[fieldSize * 2];
+        BigIntegers.asUnsignedByteArray(bigIntegerCalculateAgreement2, bArr, 0, fieldSize);
+        BigIntegers.asUnsignedByteArray(bigIntegerCalculateAgreement, bArr, fieldSize, fieldSize);
+        return bArr;
+    }
+
+    public int getFieldSize() {
+        return this.privParams.getStaticPrivateKey().getParameters().getCurve().getFieldElementEncodingLength();
+    }
+
+    /* renamed from: init */
+    public void m15002init(CipherParameters cipherParameters) {
+        ECDHUPrivateParameters eCDHUPrivateParameters = (ECDHUPrivateParameters) cipherParameters;
+        this.privParams = eCDHUPrivateParameters;
+        CryptoServicesRegistrar.checkConstraints(C5285Utils.getDefaultProperties("ECCDHU", eCDHUPrivateParameters.getStaticPrivateKey()));
+    }
+}

@@ -1,0 +1,16 @@
+package com.p038google.p061crypto.p062tink.p074shaded.protobuf;
+
+import java.lang.annotation.Documented;
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
+
+@Target({ElementType.ANNOTATION_TYPE, ElementType.CONSTRUCTOR, ElementType.FIELD, ElementType.METHOD, ElementType.PACKAGE, ElementType.TYPE})
+@Documented
+@Retention(RetentionPolicy.SOURCE)
+/* loaded from: classes.dex */
+public @interface ExperimentalApi {
+    /* renamed from: value */
+    String m3980value() default "";
+}

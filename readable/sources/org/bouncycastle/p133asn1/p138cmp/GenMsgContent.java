@@ -1,0 +1,49 @@
+package org.bouncycastle.p133asn1.p138cmp;
+
+import org.bouncycastle.p133asn1.ASN1Object;
+import org.bouncycastle.p133asn1.ASN1Primitive;
+import org.bouncycastle.p133asn1.ASN1Sequence;
+import org.bouncycastle.p133asn1.DERSequence;
+
+/* loaded from: classes.dex */
+public class GenMsgContent extends ASN1Object {
+
+    /* renamed from: content */
+    private final ASN1Sequence f18112content;
+
+    private GenMsgContent(ASN1Sequence aSN1Sequence) {
+        this.f18112content = aSN1Sequence;
+    }
+
+    public static GenMsgContent getInstance(Object obj) {
+        if (obj instanceof GenMsgContent) {
+            return (GenMsgContent) obj;
+        }
+        if (obj != null) {
+            return new GenMsgContent(ASN1Sequence.getInstance(obj));
+        }
+        return null;
+    }
+
+    @Override // org.bouncycastle.p133asn1.ASN1Object, org.bouncycastle.p133asn1.ASN1Encodable
+    public ASN1Primitive toASN1Primitive() {
+        return this.f18112content;
+    }
+
+    public InfoTypeAndValue[] toInfoTypeAndValueArray() {
+        int iMo14450size = this.f18112content.mo14450size();
+        InfoTypeAndValue[] infoTypeAndValueArr = new InfoTypeAndValue[iMo14450size];
+        for (int i = 0; i != iMo14450size; i++) {
+            infoTypeAndValueArr[i] = InfoTypeAndValue.getInstance(this.f18112content.getObjectAt(i));
+        }
+        return infoTypeAndValueArr;
+    }
+
+    public GenMsgContent(InfoTypeAndValue infoTypeAndValue) {
+        this.f18112content = new DERSequence(infoTypeAndValue);
+    }
+
+    public GenMsgContent(InfoTypeAndValue[] infoTypeAndValueArr) {
+        this.f18112content = new DERSequence(infoTypeAndValueArr);
+    }
+}

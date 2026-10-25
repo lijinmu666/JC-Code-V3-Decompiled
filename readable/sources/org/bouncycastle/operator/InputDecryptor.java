@@ -1,0 +1,11 @@
+package org.bouncycastle.operator;
+
+import java.io.InputStream;
+import org.bouncycastle.p133asn1.p174x509.AlgorithmIdentifier;
+
+/* loaded from: classes2.dex */
+public interface InputDecryptor {
+    AlgorithmIdentifier getAlgorithmIdentifier();
+
+    InputStream getInputStream(InputStream inputStream);
+}

@@ -1,0 +1,21 @@
+package org.bouncycastle.operator.p305bc;
+
+import org.bouncycastle.operator.p305bc.BcHssLmsContentSignerBuilder;
+import org.bouncycastle.p133asn1.p174x509.AlgorithmIdentifier;
+import org.bouncycastle.p133asn1.p174x509.SubjectPublicKeyInfo;
+import org.bouncycastle.p194crypto.InterfaceC5282Signer;
+import org.bouncycastle.p194crypto.p213params.AsymmetricKeyParameter;
+import org.bouncycastle.p314pqc.p316crypto.p331util.PublicKeyFactory;
+
+/* loaded from: classes2.dex */
+public class BcHssLmsContentVerifierProviderBuilder extends BcContentVerifierProviderBuilder {
+    @Override // org.bouncycastle.operator.p305bc.BcContentVerifierProviderBuilder
+    public InterfaceC5282Signer createSigner(AlgorithmIdentifier algorithmIdentifier) {
+        return new BcHssLmsContentSignerBuilder.HssSigner();
+    }
+
+    @Override // org.bouncycastle.operator.p305bc.BcContentVerifierProviderBuilder
+    public AsymmetricKeyParameter extractKeyParameters(SubjectPublicKeyInfo subjectPublicKeyInfo) {
+        return PublicKeyFactory.createKey(subjectPublicKeyInfo);
+    }
+}

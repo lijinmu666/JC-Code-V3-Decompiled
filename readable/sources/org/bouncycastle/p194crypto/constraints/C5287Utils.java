@@ -1,0 +1,15 @@
+package org.bouncycastle.p194crypto.constraints;
+
+import java.util.Set;
+
+/* renamed from: org.bouncycastle.crypto.constraints.Utils */
+/* loaded from: classes2.dex */
+class C5287Utils {
+    public static void addAliases(Set<String> set) {
+        if (set.contains("RC4")) {
+            set.add("ARC4");
+        } else if (set.contains("ARC4")) {
+            set.add("RC4");
+        }
+    }
+}

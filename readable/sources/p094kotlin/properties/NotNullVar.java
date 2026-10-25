@@ -1,0 +1,43 @@
+package p094kotlin.properties;
+
+import org.conscrypt.BuildConfig;
+import p094kotlin.Metadata;
+import p094kotlin.p105jvm.internal.Intrinsics;
+import p094kotlin.p113reflect.KProperty;
+
+@Metadata(m4987d1 = {"\u0000(\n\u0002\u0018\u0002\n\u0000\n\u0002\u0010\u0000\n\u0002\u0018\u0002\n\u0002\b\u0007\n\u0002\u0018\u0002\n\u0002\b\u0002\n\u0002\u0010\u0002\n\u0002\b\u0002\n\u0002\u0010\u000e\n\u0000\b\u0002\u0018\u0000*\b\b\u0000\u0010\u0001*\u00020\u00022\u0010\u0012\u0006\u0012\u0004\u0018\u00010\u0002\u0012\u0004\u0012\u0002H\u00010\u0003B\t\bF¢\u0006\u0004\b\u0004\u0010\u0005J%\u0010\b\u001a\u00028\u00002\b\u0010\t\u001a\u0004\u0018\u00010\u00022\n\u0010\n\u001a\u0006\u0012\u0002\b\u00030\u000bH\u0096\u0082\u0004¢\u0006\u0002\u0010\fJ-\u0010\r\u001a\u00020\u000e2\b\u0010\t\u001a\u0004\u0018\u00010\u00022\n\u0010\n\u001a\u0006\u0012\u0002\b\u00030\u000b2\u0006\u0010\u0006\u001a\u00028\u0000H\u0096\u0082\u0004¢\u0006\u0002\u0010\u000fJ\n\u0010\u0010\u001a\u00020\u0011H\u0096\u0080\u0004R\u0013\u0010\u0006\u001a\u0004\u0018\u00018\u0000X\u0082\u008e\b¢\u0006\u0004\n\u0002\u0010\u0007¨\u0006\u0012"}, m4988d2 = {"Lkotlin/properties/NotNullVar;", "T", BuildConfig.f24315FLAVOR, "Lkotlin/properties/ReadWriteProperty;", "<init>", "()V", "value", "Ljava/lang/Object;", "getValue", "thisRef", "property", "Lkotlin/reflect/KProperty;", "(Ljava/lang/Object;Lkotlin/reflect/KProperty;)Ljava/lang/Object;", "setValue", BuildConfig.f24315FLAVOR, "(Ljava/lang/Object;Lkotlin/reflect/KProperty;Ljava/lang/Object;)V", "toString", BuildConfig.f24315FLAVOR, "kotlin-stdlib"}, m4989k = 1, m4990mv = {2, 4, 0}, m4992xi = 48)
+/* loaded from: classes.dex */
+final class NotNullVar<T> implements ReadWriteProperty<Object, T> {
+    private T value;
+
+    @Override // p094kotlin.properties.ReadWriteProperty, p094kotlin.properties.ReadOnlyProperty
+    public T getValue(Object thisRef, KProperty<?> property) {
+        Intrinsics.checkNotNullParameter(property, "property");
+        T t = this.value;
+        if (t != null) {
+            return t;
+        }
+        throw new IllegalStateException("Property " + property.mo6292getName() + " should be initialized before get.");
+    }
+
+    @Override // p094kotlin.properties.ReadWriteProperty
+    public void setValue(Object thisRef, KProperty<?> property, T value) {
+        Intrinsics.checkNotNullParameter(property, "property");
+        Intrinsics.checkNotNullParameter(value, "value");
+        this.value = value;
+    }
+
+    public String toString() {
+        String str;
+        StringBuilder sb = new StringBuilder();
+        sb.append("NotNullProperty(");
+        if (this.value != null) {
+            str = "value=" + this.value;
+        } else {
+            str = "value not initialized yet";
+        }
+        sb.append(str);
+        sb.append(')');
+        return sb.toString();
+    }
+}
