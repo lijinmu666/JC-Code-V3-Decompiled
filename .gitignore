@@ -1,0 +1,5 @@
+.build/
+decoded/
+out/
+*.keystore
+*.jks
