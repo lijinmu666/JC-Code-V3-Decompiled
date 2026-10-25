@@ -1,0 +1,45 @@
+name: Deobfuscate source
+on:
+  push:
+    branches: [main]
+    paths:
+      - deobfuscate.py
+      - deobfuscation.tiny
+      - .github/workflows/deobfuscate.yml
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: deobfuscate-main
+  cancel-in-progress: false
+jobs:
+  deobfuscate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Generate readable source and mappings
+        run: python3 deobfuscate.py
+      - name: Save generated source in repository
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add readable/
+          git diff --cached --quiet && exit 0
+          git commit -m "Generate deobfuscated Java reading sources and mappings"
+          git pull --rebase origin main
+          git push origin HEAD:main
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: JC-Code-V3-readable-source
+          path: readable/
+          if-no-files-found: error
+          retention-days: 30
